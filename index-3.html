@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        border: 1px solid red;
+        height: 300px;
+        position: relative;
+        padding: 20px;
+      }
+      .clearfix::after {
+        content: "";
+        clear: both;
+        display: block;
+      }
+      .demo {
+        width: 50px;
+        height: 50px;
+        border: 1px solid green;
+        background: green;
+        /* position: static; */
+        position: relative;
+        /* top: 10px;
+        left: 10px; */
+        /* float: left; */
+        z-index: 1;
+      }
+      /* position: static 默认值，是指这个写不写都一样，当前元素在文档流中本来的样子，所有一般这个属性我们不写; */
+      /* position:relative 相对定位，第一种用法：一般加top和left，可以根据第二个demo2来看它位置;第二种：用来做场景的位移，但是可以直接用flex，
+      所有一般我们不用；第三种：z-index：auto是默认后面的那个div会压住前面那个div，如果不想被压住可以直接值为z-index:1，默认每个z-index：auto,
+      这里的auto计算出来是0，但是不能直接等于0；也可以等于-1，当第二个div是-1的时候，被第一个div压住； */
+      .demo2 {
+        background: black;
+        height: 50px;
+        width: 50px;
+        /* float: left; */
+      }
+      .close {
+        position: absolute;
+        background: grey;
+        top: 0;
+        right: 0;
+        padding: 0 8px;
+        color: white;
+      }
+      /* 关闭按钮都是用position: absolute;的绝对定位做的，但是写这个时候，需要在父元素上面加个相对定位position: relative;，这样关闭按钮才
+      可以跑到最右边去，如果有最初的元素，比如爷爷之类，需在最先定位的地方加position:relative，不一定是父元素 */
+      button {
+        position: relative;
+      }
+      button span {
+        position: absolute;
+        border: 1px solid red;
+        white-space: nowrap;
+        bottom: calc(100% + 10px);
+        /* 这用calc使指距离地面百分之百，再加个10px是让它高于选择器10px,这里100% + 10px中间必须要有空格，不然不能用 */
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      /* white-space:nowrap这个是禁止换行 */
+      button span {
+        display: none;
+        /* 这个是默认看不见的意思 */
+      }
+      button :hover span {
+        display: inline-block;
+        /* 当被悬浮的时候，这个span才可以被看见，缩写是用d:ib+tab */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container clearfix">
+      <div class="demo"></div>
+      <div class="demo2"></div>
+      <div style="height: 100px;"></div>
+      <!-- 这个可以使上面内容和下面内容隔开 -->
+      <span class="close">X</span>
+      <button>
+        点击
+        <span class="tips">提示内容</span>
+      </button>
+    </div>
+  </body>
+</html>
