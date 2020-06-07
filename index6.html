@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        border: 1px solid red;
+        height: 200px;
+      }
+      .relative {
+        position: relative;
+        background: red;
+        height: 50px;
+        top: -10px;
+        z-index: 5;
+      }
+      .relative2 {
+        position: relative;
+        background: green;
+        height: 50px;
+        top: -10px;
+        z-index: 10;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      文字
+      <div class="relative"></div>
+      <div class="relative2"></div>
+    </div>
+  </body>
+</html>
